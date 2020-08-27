@@ -5,7 +5,7 @@ This app was created using express, mongoose and nanoid. Its functionality is ba
 
   - [Express](https://expressjs.com/pt-br/)
   - [Mongoose](https://mongoosejs.com/)
-  - [nanoid](https://github.com/ai/nanoid)
+  - [Nanoid](https://github.com/ai/nanoid)
 
 
 
