@@ -1,10 +1,10 @@
 const CreateShortLinkController = require('../../presentation/controllers/create-a-short-link-controller')
 const urlValidatorAdapter = require('../../infra/validators/url-validator-adapter')
-const UrlValidation = require('../../validators/url-validation')
-const SlugGeneration = require('../../generators/slug-generation')
+const UrlValidation = require('../../utils/validators/url-validation')
+const SlugGeneration = require('../../utils/generators/slug-generation')
 const slugGeneratorAdapter = require('../../infra/generators/slug-generator-adapter')
 const AddLink = require('../../domain/usecases/add-link')
-const linkRepository = require('../../infra/db/mongodb/link-repository')
+const linkRepository = require('../../infra/db/mongoose/link-repository')
 
 module.exports = () => {
   const urlValidation = UrlValidation(urlValidatorAdapter)

@@ -6,6 +6,6 @@ const linkSchema = new Schema({
   url: String,
   slug: String,
   date: Date
-})
+}, { versionKey: false })
 
-module.exports = mongoose.model('Link', linkSchema)
+module.exports = mongoose.model('link', linkSchema)
