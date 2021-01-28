@@ -6,7 +6,13 @@ module.exports = function () {
     return link
   }
 
+  const findBySlug = async (slug) => {
+    const link = await LinkModel.findOne({ slug })
+    return link
+  }
+
   return {
-    add
+    add,
+    findBySlug
   }
 }

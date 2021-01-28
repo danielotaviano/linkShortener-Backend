@@ -1,5 +1,7 @@
-const { nanoid } = require('nanoid')
+const { customAlphabet } = require('nanoid')
 
 module.exports = (url) => {
-  return nanoid(5)
+  const alphabet = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789'
+  const nanoid = customAlphabet(alphabet, 5)
+  return nanoid()
 }
