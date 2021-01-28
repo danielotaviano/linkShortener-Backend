@@ -1,5 +1,5 @@
-const { badRequest, serverError } = require('../helper/http-helper')
-const { appError, ok } = require('../err/app-error')
+const { badRequest, ok, serverError } = require('../helper/http-helper')
+const { appError } = require('../err/app-error')
 
 module.exports = function (linkValidator, slugGenerator, addLink) {
   this.linkValidation = linkValidator
@@ -14,19 +14,20 @@ module.exports = function (linkValidator, slugGenerator, addLink) {
         return badRequest(appError('Missing Param Error', 'Missing Param: Url'))
       }
 
-      const isValidLink = this.linkValidation.isValid(url)
+      const isValidLink = this.linkValidation(url)
       if (!isValidLink) {
         return badRequest(appError('Invalid Param Error', 'Invalid Param: Link url is not a valid url'))
       }
 
       if (!slug) {
-        slug = this.generateRandomSlug.generate()
+        slug = this.generateRandomSlug()
       }
 
-      const createdLink = await this.addLink.add({ slug, url })
+      const createdLink = await this.addLink({ slug, url })
 
       return ok(createdLink)
     } catch (error) {
+      console.log(error)
       return serverError(error)
     }
   }

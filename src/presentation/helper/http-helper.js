@@ -1,16 +1,19 @@
 const { ServerError } = require('../err/app-error')
-
-module.badRequest = (error) => ({
+const badRequest = (error) => ({
   statusCode: 400,
   body: error
 })
 
-module.ok = (data) => ({
+const ok = (data) => ({
   statusCode: 200,
   body: data
 })
 
-module.serverError = (error) => ({
+const serverError = (error) => ({
   statusCode: 500,
   body: ServerError(error.stack)
 })
+
+module.exports = {
+  badRequest, ok, serverError
+}
