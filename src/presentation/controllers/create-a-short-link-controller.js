@@ -8,13 +8,13 @@ module.exports = function (linkValidator, slugGenerator, addLink) {
 
   return async function create (httpRequest) {
     try {
-      let { slug, link } = httpRequest.body
+      let { slug, url } = httpRequest.body
 
-      if (!link) {
-        return badRequest(appError('Missing Param Error', 'Missing Param: Link'))
+      if (!url) {
+        return badRequest(appError('Missing Param Error', 'Missing Param: Url'))
       }
 
-      const isValidLink = this.linkValidation.isValid(link)
+      const isValidLink = this.linkValidation.isValid(url)
       if (!isValidLink) {
         return badRequest(appError('Invalid Param Error', 'Invalid Param: Link url is not a valid url'))
       }
@@ -23,7 +23,7 @@ module.exports = function (linkValidator, slugGenerator, addLink) {
         slug = this.generateRandomSlug.generate()
       }
 
-      const createdLink = await this.addLink.add(link)
+      const createdLink = await this.addLink.add({ slug, url })
 
       return ok(createdLink)
     } catch (error) {
