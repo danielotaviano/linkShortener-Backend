@@ -14,6 +14,10 @@ const serverError = (error) => ({
   body: ServerError(error.stack)
 })
 
+const redirect = (url) => ({
+  statusCode: 301,
+  urlTo: url
+})
 module.exports = {
-  badRequest, ok, serverError
+  badRequest, ok, serverError, redirect
 }
